@@ -1,41 +1,4 @@
 services:
-
-  dbt-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: [ "dbt-rpc", "serve" ]
-    env_file: .env
-    environment:
-      # For compatibility with Dagster logs
-      # https://github.com/dbt-labs/dbt-rpc/issues/63
-      - DBT_ENABLE_LEGACY_LOGGER=True
-    ports:
-      - "8580:8580"
-
-    volumes:
-      - ./models:/app/models
-      - ./profiles:/root/.dbt  # If dbt profiles are needed
-    networks:
-      - elt-pipeline
-    depends_on:
-      - postgres-db
-
-  dbt-console:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: [ "/bin/bash" ]
-    env_file: .env
-    stdin_open: true
-    tty: true
-    volumes:
-      - dbt_data:/app
-    networks:
-      - elt-pipeline
-    depends_on:
-      - postgres-db
-
   postgres-db:
     image: postgres:latest
     container_name: postgres_db
