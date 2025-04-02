@@ -1,0 +1,10 @@
+models:
+  - name: customer_user_stg
+    columns:
+      - name: customer_id
+        tests: 
+          - unique
+          - not_null
+      - name: customer_age
+        tests:
+          - custom_negative_check: {}

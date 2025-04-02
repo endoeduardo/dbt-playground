@@ -1,10 +1,10 @@
-CREATE TABLE source.users (
+CREATE TABLE users (
  id bpchar(36) NULL,
  user_name varchar(60) null,
  email varchar(60) null
 );
 
-INSERT INTO "source".users
+INSERT INTO users
 (id, user_name, email)
 VALUES('1', 'jon', 'jon@acme.com');
 INSERT INTO "source".users
