@@ -1,0 +1,1 @@
+{{calculate_total_payment('PayPal')}}
